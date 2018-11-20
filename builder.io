@@ -4,10 +4,22 @@ Builder forward := method(
     call message arguments foreach(
         arg,
         content := self doMessage(arg)
-        if (content type == "Sequence", writenln(content)))
+        if (content type == "Sequence", writeln(content)))
     writeln("</", call message name, ">"))
 Builder ul(
     li("Io"),
     li("Lua"),
     li("JavaScript")
+)
+
+
+Builder := Object clone do (
+  forward := method(
+    writeln("<", call message name, ">")
+    call message arguments foreach(arg, 
+      content := self doMessage(arg)
+      if (content type == "Sequence", writeln(content))
+    )
+    writeln("</", call message name, ">")
+  )
 )
